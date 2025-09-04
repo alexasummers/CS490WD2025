@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>HTML Demo 3</title>
+    <link rel="stylesheet" href="CSS1.css" type="text/css">
+  </head>
+  <style>
+			p {background-color: black;
+			   color: white;}
+			.groupstyles {background-color: yellow;
+			   color: purple;}
+			#idstyle {background-color: blue; }
+			footer { color: blue;}
+			footer p {color: blue;}
+		</style>
+  <body>
+
+    <!-- Table -->
+  <div>
+    <h2>Sample Table</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Occupation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Alice</td>
+          <td>28</td>
+          <td>Designer</td>
+        </tr>
+        <tr>
+          <td>Bob</td>
+          <td>34</td>
+          <td>Developer</td>
+        </tr>
+        <tr>
+          <td>Charlie</td>
+          <td>29</td>
+          <td>Teacher</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+    <h1>Cascading Style Sheet</h1>
+		<h2>CSS Methods</h2>
+		<ol>
+			<li>Browser Defaults</li>
+			<li>External Styles</li>
+			<li>Embedded Styles</li>
+			<li>Imported Styles</li>
+		</ol>
+		<p class="groupstyles">External -- coded as a separate file</p>
+		<p>Embedded -- defined in the head section of a website</p>
+		<p>Imported -- brought in from somewhere else</p>
+		<p style="background-color: orange;">Inline -- coded in the body of the page as an attribute of
+		an HTML tag (specific to an element)</p>
+		
+		<h2 class="groupstyles"> Classes </h2>
+		<p> Classes allow you <span class="spanclass"> to create a group </span> that all have the same
+		properties</p>
+		<h2 id="idstyle">IDs</h2>
+		<p>IDs allow you to classify one particular element on the page </p>
+	<footer>
+		<p>name</p>
+		<p>address</p>
+		<p>email</p>
+		copyright info
+	</footer>
+</body>
+</html>
