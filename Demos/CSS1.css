@@ -1,0 +1,20 @@
+/*selector {declaration: value;}*/
+/*selector: HTML element, class, or ID*/
+/*declaration: the style I want to change*/
+
+body {background-color: red;
+background-color: blue;
+color: white;
+background-color: rgb(255, 50, 50);
+background-color: hsl(200, 80%, 80%);
+background-color: #FF22FF;
+}
+
+h1, h2 {
+color: red;
+background-color: white;
+}
+
+p {color: blue;}
+ol {background-color: white;}
+ol li {color: green;}
