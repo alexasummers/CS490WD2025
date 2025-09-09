@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!--Alexa Summers, 09/8/2025-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>CSS Fonts & Images</title>
+  <link rel="stylesheet" href="CSSPart2.css">
+  <style>
+    body {
+      background-image: url(sponge.gif);
+      background-repeat: repeat-y;
+    }
+    ul {
+      list-style-image: url(marker.gif);
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="home.html"><img src="sponge.gif" alt="Home button"></a>
+    <a href="contact.html"><img src="sponge.gif" alt="Contact button"></a>
+    <a href="services.html"><img src="sponge.gif" alt="Services button"></a>
+  </nav>
+
+  <h1>CSS Fonts & Images</h1>
+  
+  <!-- Fonts Section -->
+  <h2>Types of Fonts</h2>
+  <ul>
+    <li>Serif</li>
+    <li>Sans-serif</li>
+    <li>Monospace</li>
+    <li>Cursive</li>
+    <li>Fantasy</li>
+  </ul>
+  <p>Serif fonts are best used for print media. Sans-serif fonts
+  are best used for screen media. You can use Sans-serif fonts
+  for a paragraph and serif fonts for headings.</p>
+
+  <h2>Font-Size</h2>
+  <ul>
+    <li>xx-small, x-small, small, medium, large, x-large, xx-large</li>
+    <li>pixel</li>
+    <li>point</li>
+    <li>em</li>
+    <li>%</li>
+  </ul>
+
+  <h2>Font Properties</h2>
+  <dl>
+    <dt>Font-Weight</dt>
+    <dd>Sets how thick or thin text displays (e.g., bold).</dd>
+    <dt>Font-Style</dt>
+    <dd>Specifies style (e.g., italics or oblique).</dd>
+    <dt>Line-height</dt>
+    <dd>Specifies line height (normal, %, or a number like 1.6).</dd>
+    <dt>Text-align</dt>
+    <dd>Sets text alignment: left, center, right, or justified.</dd>
+    <dt>Text-decoration</dt>
+    <dd>Options: none, underline, overline, or line-through.</dd>
+    <dt>Text-indent</dt>
+    <dd>Indents the first line of text in a block.</dd>
+    <dt>Text-transform</dt>
+    <dd>Controls capitalization: uppercase, lowercase, capitalize.</dd>
+    <dt>Letter-spacing</dt>
+    <dd>Adjusts spacing between characters.</dd>
+  </dl>
+
+  <!-- Images Section -->
+  <h2>Images</h2>
+  <ul>
+    <li>GIF - lossless, transparency, animation, 256 colors</li>
+    <li>JPG - lossy, no transparency, no animation, millions of colors</li>
+    <li>PNG - lossless, transparency, no animation, millions of colors</li>
+  </ul>
+  <img src="sponge.gif" height="200" width="300" alt="A fishing boat in the sea">
+
+  <h2>List Markers with CSS</h2>
+  <p><code>list-style-type</code> allows styling with none, disc, circle, square, decimal, upper-alpha, lower-alpha, lower-roman.</p>
+  <p><code>list-style-image</code> allows you to use an image as the bullet.</p>
+  <p><code>list-style-position</code> lets you state if the position is inside or outside.</p>
+
+  <h2>Favorites Icon</h2>
+  <p>A favorites icon (also known as favicon) adds an icon to the browser tab.</p>
+</body>
+</html>
