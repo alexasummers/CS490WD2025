@@ -1,0 +1,56 @@
+/*Alexa Summers, 9/16/25*/
+
+      body {background-color: blue;
+				  background-image: linear-gradient(to bottom, red, blue);
+				  background-repeat: no-repeat;
+				  }
+			
+			#wrapper {
+			width: 50%;
+			margin-left: auto;
+			margin-right: auto;
+			min-width: 250px;
+			max-width: 700px;
+			box-shadow: 20px 50px 2px grey;
+			padding: 10px;
+			background-color: purple;
+			opacity: 0.9;
+			}
+			
+			h1 {background-color: #6666ff;
+			border: 5px ridge grey;
+			text-align: center;
+			padding: 5px;
+			margin: 0 0 0 0;
+			border-radius: 0px;
+			border-top-right-radius: 50px;
+			border-bottom-right-radius: 50px;
+			text-shadow: 2px 2px 1px #FFF;
+			background-image: radial-gradient(white, blue);
+			}
+			
+			p { background-color: rgba(0, 255, 0, 0.6);
+				border-left: 5px dashed #000;
+				border-right: 5px dashed #000;
+				padding: 10px;
+				margin: 10px 0;
+			  }
+			  
+			nav ul { list-style-type: none; }
+			
+			nav li {display: inline;
+					background-color: black;
+					border-radius: 10px; }
+			
+			nav li:hover {background-color: white;}
+			
+			nav a {text-decoration: none;
+				   padding: 10px;}
+				   
+			nav a:link {color: white;}
+			
+			nav a:visited {color: blue;}
+			
+			nav a:hover {color: red;}
+			
+			nav a:active {color: purple;}
