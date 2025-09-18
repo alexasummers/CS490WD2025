@@ -1,3 +1,5 @@
+/*Alexa Summers, 09/18/2025*/
+
 /*Mobile styles go first */
 
 p {background-color: red;
@@ -20,3 +22,4 @@ p {background-color: red;
   .showmobile {display: none;}
   .showdesktop {display: block;}
 }
+
