@@ -5,7 +5,16 @@
         <title>Flex Box</title>
         <meta charset="utf-8">
         <style>
-
+			#gallery { display: flex;
+					   flex-wrap: wrap;
+					   flex-direction: column-reverse;
+					   flex-flow: row wrap;
+					   justify-content: space-around;
+					 }
+					 
+			img { margin: 1em;
+				  box-shadow: 10px 10px 10px #777;
+				  }
         </style>
         <body>
             <div id="gallery">
@@ -21,5 +30,6 @@
     </head>
 
 </html>
+
 
 
