@@ -1,0 +1,274 @@
+<!--Alexa Summers, 9/25/2025-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Intro to JavaScript Demos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+    section {
+      border: 1px solid #ccc;
+      padding: 15px;
+      margin-bottom: 25px;
+      border-radius: 8px;
+      background: #f9f9f9;
+    }
+    h2 {
+      margin-top: 0;
+    }
+    .demo {
+      margin-bottom: 10px;
+      padding: 10px;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    #toggleBox {
+      width: 150px;
+      height: 100px;
+      background: lightblue;
+      text-align: center;
+      line-height: 100px;
+      margin-top: 10px;
+    }
+    img {
+      max-width: 200px;
+      display: block;
+      margin-top: 10px;
+    }
+    #counterValue {
+      font-size: 20px;
+      margin: 0 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Things We Can Do With JS</h1>
+  
+  <!-- Console -->
+  <section>
+    <h2>Console Log</h2>
+    <div class="demo">
+      <button id="logBtn">Log Message</button>
+    </div>
+  </section>
+
+  <!-- Alert + Prompt -->
+  <section>
+    <h2>Alert & Prompt</h2>
+    <div class="demo">
+      <button id="alertBtn">Show Alert</button>
+      <button id="promptBtn">Ask Name</button>
+      <p id="promptOutput"></p>
+    </div>
+  </section>
+
+  <!-- Change text & style -->
+  <section>
+    <h2>Change Text & Style</h2>
+    <div class="demo">
+      <p id="textDemo">This text will change!</p>
+      <button id="textBtn">Change Text</button>
+    </div>
+  </section>
+
+  <!-- List manipulation -->
+  <section>
+    <h2>List Manipulation</h2>
+    <div class="demo">
+      <ul id="demoList">
+        <li>Apple</li>
+        <li>Banana</li>
+      </ul>
+      <input id="listInput" type="text" placeholder="New item">
+      <button id="listBtn">Add Item</button>
+    </div>
+  </section>
+
+  <!-- Math & input -->
+  <section>
+    <h2>Simple Math</h2>
+    <div class="demo">
+      <input id="num1" type="number" placeholder="First number">
+      <input id="num2" type="number" placeholder="Second number">
+      <button id="mathBtn">Add</button>
+      <p id="sumResult"></p>
+    </div>
+  </section>
+
+  <!-- Show/hide -->
+  <section>
+    <h2>Show/Hide Box</h2>
+    <div class="demo">
+      <button id="toggleBtn">Toggle Box</button>
+      <div id="toggleBox">Hello!</div>
+    </div>
+  </section>
+
+  <!-- Change background color -->
+  <section>
+    <h2>Random Background Color</h2>
+    <div class="demo">
+      <button id="colorBtn">Change Background</button>
+    </div>
+  </section>
+
+  <!-- Counter -->
+  <section>
+    <h2>Counter</h2>
+    <div class="demo">
+      <button id="decrementBtn">-</button>
+      <span id="counterValue">0</span>
+      <button id="incrementBtn">+</button>
+    </div>
+  </section>
+
+  <!-- Clock -->
+  <section>
+    <h2>Clock</h2>
+    <div class="demo">
+      <p id="clock"></p>
+    </div>
+  </section>
+
+  <!-- Keyboard Event -->
+  <section>
+    <h2>Keyboard Event</h2>
+    <div class="demo">
+      <p>Press any key!</p>
+      <p id="keyOutput"></p>
+    </div>
+  </section>
+
+  <!-- Image change -->
+  <section>
+    <h2>Change Image</h2>
+    <div class="demo">
+      <button id="imgBtn">Change Image</button>
+      <img id="demoImage" src="https://placecats.com/200/200" alt="Kitten">
+    </div>
+  </section>
+
+  <script>
+    // Grab elements
+    const logBtn = document.getElementById("logBtn");
+    const alertBtn = document.getElementById("alertBtn");
+    const promptBtn = document.getElementById("promptBtn");
+    const promptOutput = document.getElementById("promptOutput");
+    const textBtn = document.getElementById("textBtn");
+    const textDemo = document.getElementById("textDemo");
+    const listBtn = document.getElementById("listBtn");
+    const listInput = document.getElementById("listInput");
+    const demoList = document.getElementById("demoList");
+    const mathBtn = document.getElementById("mathBtn");
+    const num1 = document.getElementById("num1");
+    const num2 = document.getElementById("num2");
+    const sumResult = document.getElementById("sumResult");
+    const toggleBtn = document.getElementById("toggleBtn");
+    const toggleBox = document.getElementById("toggleBox");
+    const colorBtn = document.getElementById("colorBtn");
+    const incrementBtn = document.getElementById("incrementBtn");
+    const decrementBtn = document.getElementById("decrementBtn");
+    const counterValue = document.getElementById("counterValue");
+    const clock = document.getElementById("clock");
+    const keyOutput = document.getElementById("keyOutput");
+    const imgBtn = document.getElementById("imgBtn");
+    const demoImage = document.getElementById("demoImage");
+
+    // Console
+    logBtn.addEventListener("click", () => {
+      console.log("Hello from JavaScript!");
+    });
+
+    // Alert + Prompt
+    alertBtn.addEventListener("click", () => {
+      alert("This is an alert!");
+    });
+
+    promptBtn.addEventListener("click", () => {
+      const name = prompt("What is your name?");
+      if (name) {
+        promptOutput.innerText = `Hello, ${name}!`;
+      }
+    });
+
+    // Change text & style
+    textBtn.addEventListener("click", () => {
+      textDemo.innerText = "The text has changed!";
+      textDemo.style.color = "red";
+      textDemo.style.fontWeight = "bold";
+    });
+
+    // List manipulation
+    listBtn.addEventListener("click", () => {
+      if (listInput.value.trim() !== "") {
+        const li = document.createElement("li");
+        li.innerText = listInput.value;
+        demoList.appendChild(li);
+        listInput.value = "";
+      }
+    });
+
+    // Math & input
+    mathBtn.addEventListener("click", () => {
+      const n1 = parseFloat(num1.value);
+      const n2 = parseFloat(num2.value);
+      const sum = n1 + n2;
+      sumResult.innerText = `Sum: ${sum}`;
+    });
+
+    // Show/hide box
+    toggleBtn.addEventListener("click", () => {
+      toggleBox.style.display = toggleBox.style.display === "none" ? "block" : "none";
+    });
+
+    // Change background color
+    colorBtn.addEventListener("click", () => {
+      const r = Math.floor(Math.random() * 256);
+      const g = Math.floor(Math.random() * 256);
+      const b = Math.floor(Math.random() * 256);
+      document.body.style.backgroundColor = `rgb(${r},${g},${b})`;
+    });
+
+    // Counter
+    let count = 0;
+    incrementBtn.addEventListener("click", () => {
+      count++;
+      counterValue.innerText = count;
+    });
+    decrementBtn.addEventListener("click", () => {
+      count--;
+      counterValue.innerText = count;
+    });
+
+    // Clock
+    function updateClock() {
+      const now = new Date();
+      clock.innerText = now.toLocaleTimeString();
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // Keyboard Event
+    document.addEventListener("keydown", (event) => {
+      keyOutput.innerText = `You pressed: ${event.key}`;
+    });
+
+    // Image change
+    let toggled = false;
+    imgBtn.addEventListener("click", () => {
+      if (toggled) {
+        demoImage.src = "https://placecats.com/200/200";
+      } else {
+        demoImage.src = "https://placebear.com/200/200";
+      }
+      toggled = !toggled;
+    });
+  </script>
+</body>
+</html>
