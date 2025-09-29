@@ -2,38 +2,55 @@ const input = document.getElementById("taskInput");
 const addBtn = document.getElementById("addBtn");
 const taskList = document.getElementById("taskList");
 
-addBtn.addEventListener("click", () => {
-  const taskText = input.value.trim();
+    // --- Load saved tasks from localStorage when page opens ---
+    let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    tasks.forEach(renderTask);
 
-  if (taskText === "") return; // ignore empty input
+    // Add new task when button is clicked
+    addBtn.addEventListener("click", () => {
+      const taskText = input.value.trim();
+      if (taskText === "") return;
 
-  const li = document.createElement("li");
-  li.textContent = taskText;
+      const task = { text: taskText, done: false };
+      tasks.push(task);
+      saveTasks();
 
-  // mark task as done
-  li.addEventListener("click", () => {
-    li.classList.toggle("done");
-  });
+      renderTask(task);
+      input.value = "";
+    });
 
-  // delete button
-  const deleteBtn = document.createElement("button");
-  deleteBtn.textContent = "[X]";
-  deleteBtn.style.marginLeft = "10px";
+    // Allow Enter key to add task
+    input.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") addBtn.click();
+    });
 
-  deleteBtn.addEventListener("click", (e) => {
-    e.stopPropagation(); // prevent toggling "done"
-    taskList.removeChild(li);
-  });
+    // --- Functions ---
+    function renderTask(task) {
+      const li = document.createElement("li");
+      li.textContent = task.text;
+      if (task.done) li.classList.add("done");
 
-  li.appendChild(deleteBtn);
-  taskList.appendChild(li);
+      // Toggle done on click
+      li.addEventListener("click", () => {
+        task.done = !task.done;
+        li.classList.toggle("done");
+        saveTasks();
+      });
 
-  input.value = "";
-});
+      // Delete button
+      const deleteBtn = document.createElement("button");
+      deleteBtn.textContent = "❌";
+      deleteBtn.addEventListener("click", (e) => {
+        e.stopPropagation(); // don’t mark done
+        tasks = tasks.filter(t => t !== task);
+        taskList.removeChild(li);
+        saveTasks();
+      });
 
-// allow Enter key to add tasks
-input.addEventListener("keypress", (e) => {
-  if (e.key === "Enter") {
-    addBtn.click();
-  }
-});
+      li.appendChild(deleteBtn);
+      taskList.appendChild(li);
+    }
+
+    function saveTasks() {
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+    }
