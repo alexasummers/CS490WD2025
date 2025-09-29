@@ -1,0 +1,44 @@
+<!--Alexa Summers, 9/30/25-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>To-Do List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 500px;
+      margin: 50px auto;
+      padding: 20px;
+    }
+    #taskInput {
+      padding: 8px;
+      width: 70%;
+    }
+    #addBtn {
+      padding: 8px 12px;
+    }
+    li {
+      margin: 8px 0;
+      cursor: pointer;
+    }
+    .done {
+      text-decoration: line-through;
+      color: gray;
+    }
+    button {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>My To-Do List</h1>
+  <input id="taskInput" type="text" placeholder="Enter a task">
+  <button id="addBtn">Add Task</button>
+
+  <ul id="taskList"></ul>
+
+  <script src="JS3.js"></script>
+</body>
+</html>
