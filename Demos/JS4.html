@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript Demo #4</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      transition: background 0.3s, color 0.3s;
+    }
+    body.dark {
+      background: #121212;
+      color: #f1f1f1;
+    }
+    section {
+      border: 1px solid #ccc;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+    }
+    button {
+      margin-top: 10px;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+    .dark button {
+      background: #333;
+      color: #fff;
+    }
+	#hoverBox {
+      width: 100px; height: 100px;
+      background: lightblue; margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>JavaScript Demo #4</h1>
+  <button id="themeToggle">🌞 Toggle Dark/Light Mode 🌙</button>
+
+  <section id="quizBuilder">
+    <h2>Quiz Builder</h2>
+    <input id="questionInput" placeholder="Enter a question">
+    <input id="answerInput" placeholder="Enter the answer">
+    <button id="addQuestionBtn">Add Question</button>
+    <button id="startQuizBtn">Start Quiz</button>
+    <ul id="quizList"></ul>
+    <p id="quizResult"></p>
+  </section>
+
+  <section id="regexChecker">
+    <h2>Regex Checker</h2>
+    <label for="regexInput">Enter Regex:</label>
+    <input id="regexInput" placeholder="e.g. ^[A-Za-z]+$">
+    <br>
+    <label for="testString">Test String:</label>
+    <input id="testString" placeholder="Type something to test">
+    <br>
+    <button id="checkBtn">Check</button>
+    <p id="regexResult"></p>
+  </section>
+
+  <section id="apiDemo">
+    <h2>Random Joke (API Fetch)</h2>
+    <button id="jokeBtn">Get Joke</button>
+    <p id="jokeOutput"></p>
+  </section>
+  
+  <h2>Random Dice Roll</h2>
+  <button id="rollBtn">Roll Dice</button>
+  <p id="rollResult"></p>
+
+  <h2>Pick a Background Color</h2>
+  <input type="color" id="colorPicker">
+
+  <h2>Countdown Timer</h2>
+  <input type="number" id="timerInput" placeholder="Enter seconds">
+  <button id="startBtn">Start</button>
+  <p id="timerDisplay"></p>
+
+  <h2>Random Image Shuffle</h2>
+  <button id="imgShuffleBtn">Shuffle Image</button><br>
+  <img id="galleryImage" src="https://placecats.com/200/200">
+
+  <h2>Hover Box</h2>
+  <div id="hoverBox"></div>
+  
+  <script>
+    const themeToggle = document.getElementById("themeToggle");
+    themeToggle.addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+    });
+
+    const questionInput = document.getElementById("questionInput");
+    const answerInput = document.getElementById("answerInput");
+    const addQuestionBtn = document.getElementById("addQuestionBtn");
+    const startQuizBtn = document.getElementById("startQuizBtn");
+    const quizList = document.getElementById("quizList");
+    const quizResult = document.getElementById("quizResult");
+
+    let quizQuestions = [];
+
+    addQuestionBtn.addEventListener("click", () => {
+      const q = questionInput.value.trim();
+      const a = answerInput.value.trim();
+      if (q && a) {
+        quizQuestions.push({ question: q, answer: a });
+        const li = document.createElement("li");
+        li.textContent = `${q} (Answer hidden)`;
+        quizList.appendChild(li);
+        questionInput.value = "";
+        answerInput.value = "";
+      }
+    });
+
+    startQuizBtn.addEventListener("click", () => {
+      if (quizQuestions.length === 0) return;
+      let score = 0;
+      for (let i = 0; i < quizQuestions.length; i++) {
+        const userAnswer = prompt(quizQuestions[i].question);
+        if (userAnswer && userAnswer.toLowerCase() === quizQuestions[i].answer.toLowerCase()) {
+          score++;
+        }
+      }
+      quizResult.textContent = `You scored ${score} out of ${quizQuestions.length}!`;
+    });
+
+    const regexInput = document.getElementById("regexInput");
+    const testString = document.getElementById("testString");
+    const checkBtn = document.getElementById("checkBtn");
+    const regexResult = document.getElementById("regexResult");
+
+    checkBtn.addEventListener("click", () => {
+      try {
+        const pattern = new RegExp(regexInput.value);
+        const str = testString.value;
+        if (pattern.test(str)) {
+          regexResult.textContent = `✅ Match found! "${str}" matches ${regexInput.value}`;
+          regexResult.style.color = "green";
+        } else {
+          regexResult.textContent = `❌ No match. "${str}" does not match ${regexInput.value}`;
+          regexResult.style.color = "red";
+        }
+      } catch (err) {
+        regexResult.textContent = "⚠️ Invalid regex pattern!";
+        regexResult.style.color = "orange";
+      }
+    });
+
+    const jokeBtn = document.getElementById("jokeBtn");
+    const jokeOutput = document.getElementById("jokeOutput");
+
+    jokeBtn.addEventListener("click", async () => {
+      jokeOutput.textContent = "Loading...";
+      try {
+        const res = await fetch("https://official-joke-api.appspot.com/random_joke");
+        const data = await res.json();
+        jokeOutput.textContent = `${data.setup} — ${data.punchline}`;
+      } catch (err) {
+        jokeOutput.textContent = "Failed to fetch joke.";
+      }
+    });
+	const rollBtn = document.getElementById("rollBtn");
+	const rollResult = document.getElementById("rollResult");
+	rollBtn.addEventListener("click", () => {
+		const randomNum = Math.floor(Math.random() * 6) + 1;
+		rollResult.innerText = `🎲 You rolled: ${randomNum}`;
+  });
+  
+    const colorPicker = document.getElementById("colorPicker");
+	colorPicker.addEventListener("input", () => {
+		document.body.style.backgroundColor = colorPicker.value;
+  });
+  let timer;
+  const startBtn = document.getElementById("startBtn");
+  const timerInput = document.getElementById("timerInput");
+  const timerDisplay = document.getElementById("timerDisplay");
+  startBtn.addEventListener("click", () => {
+    let time = parseInt(timerInput.value);
+    timerDisplay.innerText = time;
+    clearInterval(timer);
+    timer = setInterval(() => {
+      time--;
+      timerDisplay.innerText = time;
+      if (time <= 0) {
+        clearInterval(timer);
+        timerDisplay.innerText = "⏰ Time's up!";
+      }
+    }, 1000);
+  });
+  
+  const images = [
+    "https://placecats.com/200/200",
+    "https://placebear.com/200/200",
+    "https://placebeard.it/200x200"
+  ];
+  const imgShuffleBtn = document.getElementById("imgShuffleBtn");
+  const galleryImage = document.getElementById("galleryImage");
+  imgShuffleBtn.addEventListener("click", () => {
+    const randomIndex = Math.floor(Math.random() * images.length);
+    galleryImage.src = images[randomIndex];
+  });
+
+  const hoverBox = document.getElementById("hoverBox");
+  hoverBox.addEventListener("mouseover", () => {
+    hoverBox.style.background = "gold";
+  });
+  hoverBox.addEventListener("mouseout", () => {
+    hoverBox.style.background = "lightblue";
+  });
+  </script>
+</body>
+</html>
