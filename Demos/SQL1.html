@@ -1,26 +1,26 @@
-CREATE TABLE customers (
-  id INTEGER PRIMARY KEY,
-  name TEXT,
-  favorite_drink TEXT
-);
+CREATE TABLE customers ( <br>
+&nbsp;  id INTEGER PRIMARY KEY,<br>
+&nbsp;  name TEXT,<br>
+&nbsp;  favorite_drink TEXT<br>
+);<br><br>
 
-CREATE TABLE orders (
-  id INTEGER PRIMARY KEY,
-  customer_id INTEGER,
-  drink TEXT,
-  price REAL,
-  FOREIGN KEY (customer_id) REFERENCES customers(id)
-);
+CREATE TABLE orders (<br>
+&nbsp;  id INTEGER PRIMARY KEY,<br>
+&nbsp;  customer_id INTEGER,<br>
+&nbsp;  drink TEXT,<br>
+&nbsp;  price REAL,<br>
+&nbsp;  FOREIGN KEY (customer_id) REFERENCES customers(id)<br>
+);<br><br>
 
-INSERT INTO customers (id, name, favorite_drink) VALUES
-(1, 'Ava', 'Latte'),
-(2, 'Noah', 'Espresso'),
-(3, 'Liam', 'Cold Brew');
+INSERT INTO customers (id, name, favorite_drink) VALUES<br>
+(1, 'Ava', 'Latte'),<br>
+(2, 'Noah', 'Espresso'),<br>
+(3, 'Liam', 'Cold Brew');<br><br>
 
-INSERT INTO orders (id, customer_id, drink, price) VALUES
-(1, 1, 'Latte', 5.50),
-(2, 2, 'Espresso', 3.00),
-(3, 3, 'Cold Brew', 4.75);
+INSERT INTO orders (id, customer_id, drink, price) VALUES<br>
+(1, 1, 'Latte', 5.50),<br>
+(2, 2, 'Espresso', 3.00),<br>
+(3, 3, 'Cold Brew', 4.75);<br><br>
 
-SELECT *
-FROM customers, orders;
+SELECT *<br>
+FROM customers, orders;<br>
