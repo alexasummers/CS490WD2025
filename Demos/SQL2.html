@@ -1,0 +1,150 @@
+CREATE TABLE students ( <br>
+&nbsp;  id INTEGER PRIMARY KEY, <br>
+&nbsp;  name TEXT, <br>
+&nbsp;  major TEXT, <br>
+&nbsp;  year INTEGER <br>
+); <br> <br>
+
+CREATE TABLE instructors ( <br>
+&nbsp;  id INTEGER PRIMARY KEY, <br>
+&nbsp;  name TEXT, <br>
+&nbsp;  department TEXT <br>
+); <br> <br>
+
+CREATE TABLE courses ( <br>
+&nbsp;  id INTEGER PRIMARY KEY, <br>
+&nbsp;  title TEXT, <br>
+&nbsp;  department TEXT, <br>
+&nbsp;  instructor_id INTEGER, <br>
+&nbsp;  FOREIGN KEY (instructor_id) REFERENCES instructors(id) <br>
+); <br> <br>
+
+CREATE TABLE enrollments ( <br>
+&nbsp;  id INTEGER PRIMARY KEY, <br>
+&nbsp;  student_id INTEGER, <br>
+&nbsp;  course_id INTEGER, <br>
+&nbsp;  grade REAL, <br>
+&nbsp;  FOREIGN KEY (student_id) REFERENCES students(id), <br>
+&nbsp;  FOREIGN KEY (course_id) REFERENCES courses(id) <br>
+); <br> <br>
+
+CREATE TABLE departments ( <br>
+&nbsp;  id INTEGER PRIMARY KEY, <br>
+&nbsp;  name TEXT, <br>
+&nbsp;  building TEXT <br>
+); <br> <br>
+
+INSERT INTO students VALUES <br>
+(1, 'Ava', 'Computer Science', 3), <br>
+(2, 'Noah', 'Mathematics', 2), <br>
+(3, 'Liam', 'Computer Science', 1), <br>
+(4, 'Emma', 'Biology', 4), <br>
+(5, 'Taylor', NULL, 3); <br> <br>
+
+INSERT INTO instructors VALUES <br>
+(1, 'Dr. Brown', 'Computer Science'), <br>
+(2, 'Dr. Green', 'Mathematics'), <br>
+(3, 'Dr. White', 'Biology'); <br> <br>
+
+INSERT INTO departments VALUES <br>
+(1, 'Computer Science', 'Tech Hall'), <br>
+(2, 'Mathematics', 'Science Center'), <br>
+(3, 'Biology', 'Life Sciences Building'); <br> <br>
+
+INSERT INTO courses VALUES <br>
+(1, 'Intro to Programming', 'Computer Science', 1), <br>
+(2, 'Data Structures', 'Computer Science', 1), <br>
+(3, 'Calculus I', 'Mathematics', 2), <br>
+(4, 'Genetics', 'Biology', 3); <br> <br>
+
+INSERT INTO enrollments VALUES <br>
+(1, 1, 1, 95), <br>
+(2, 1, 2, 88), <br>
+(3, 2, 3, 91), <br>
+(4, 3, 1, 85), <br>
+(5, 4, 4, 78); <br> <br>
+
+SELECT name, major, year <br>
+FROM students <br>
+WHERE major = 'Computer Science'; <br> <br>
+
+SELECT name, grade <br>
+FROM enrollments <br>
+JOIN students ON enrollments.student_id = students.id <br>
+ORDER BY grade DESC; <br> <br>
+
+SELECT DISTINCT department <br>
+FROM instructors; <br> <br>
+
+SELECT c.department, AVG(e.grade) AS avg_grade <br>
+FROM enrollments e <br>
+JOIN courses c ON e.course_id = c.id <br>
+GROUP BY c.department; <br> <br>
+
+SELECT c.department, AVG(e.grade) AS avg_grade <br>
+FROM enrollments e <br>
+JOIN courses c ON e.course_id = c.id <br>
+GROUP BY c.department <br>
+HAVING AVG(e.grade) > 85; <br> <br>
+
+SELECT name <br>
+FROM students <br>
+WHERE id IN ( <br>
+&nbsp;  SELECT student_id <br>
+&nbsp;  FROM enrollments <br>
+&nbsp;  WHERE grade > 90 <br>
+); <br> <br>
+
+CREATE VIEW top_students AS <br>
+SELECT s.name, c.title, e.grade <br>
+FROM students s <br>
+JOIN enrollments e ON s.id = e.student_id <br>
+JOIN courses c ON e.course_id = c.id <br>
+WHERE e.grade >= 90; <br> <br>
+
+SELECT * FROM top_students; <br> <br>
+
+SELECT s.name, c.title, e.grade <br>
+FROM students s <br>
+INNER JOIN enrollments e ON s.id = e.student_id <br>
+INNER JOIN courses c ON e.course_id = c.id; <br> <br>
+
+SELECT s.name, e.grade <br>
+FROM students s <br>
+LEFT JOIN enrollments e ON s.id = e.student_id; <br>
+
+SELECT name <br>
+FROM students <br>
+WHERE major IS NULL; <br> <br>
+
+SELECT name <br>
+FROM students <br>
+WHERE major IS NOT NULL; <br> <br>
+
+SELECT name, grade <br>
+FROM enrollments e <br>
+JOIN students s ON e.student_id = s.id <br>
+WHERE grade BETWEEN 80 AND 90; <br> <br>
+
+SELECT name, major <br>
+FROM students <br>
+WHERE major IN ('Computer Science', 'Mathematics'); <br> <br>
+
+SELECT name, major <br>
+FROM students <br>
+WHERE major NOT IN ('Computer Science'); <br> <br>
+
+SELECT name <br>
+FROM students <br>
+WHERE name LIKE 'A%'; <br> <br>
+
+SELECT name <br>
+FROM students <br>
+WHERE name LIKE '_m%'; <br> <br>
+
+SELECT grade + 5 FROM enrollments WHERE grade IS NULL; <br> <br>
+
+SELECT name, year <br>
+FROM students <br>
+WHERE (major = 'Computer Science' OR major = 'Mathematics') <br>
+AND year >= 2; <br>
