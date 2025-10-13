@@ -28,8 +28,8 @@ initSqlJs({ locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1
     );
 
     INSERT INTO users (id, username, email) VALUES
-      (1, 'alice', 'alice@example.com'),
-      (2, 'bob', 'bob@example.com');
+      (1, 'Alice', 'alice@example.com'),
+      (2, 'Bob', 'bob@example.com');
 
     INSERT INTO books (id, title, author) VALUES
       (1, 'The Hobbit', 'J.R.R. Tolkien'),
@@ -40,10 +40,8 @@ initSqlJs({ locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1
       (2, 2, 2, 4, 'Disturbing but thought-provoking.');
   `;
 
-  // Run SQL to create tables and insert data
   db.run(schema);
 
-  // Button click handler to load and display reviews
   document.getElementById('load-data').addEventListener('click', () => {
     const stmt = db.prepare(`
       SELECT u.username, b.title, r.rating, r.review_text
