@@ -1,8 +1,6 @@
-// Wait for sql.js to load and initialize the DB
 initSqlJs({ locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/${file}` }).then(SQL => {
   const db = new SQL.Database();
 
-  // SQL schema + sample data (same as schema.sql)
   const schema = `
     CREATE TABLE users (
       id INTEGER PRIMARY KEY,
