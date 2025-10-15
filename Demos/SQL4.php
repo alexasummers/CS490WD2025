@@ -1,0 +1,60 @@
+<?php
+$sql = "SELECT id, title, author, year FROM books ORDER BY year DESC;";
+
+// Sample "table" data stored in PHP array
+$books = [
+  ['id' => 1, 'title' => 'The Hobbit', 'author' => 'J.R.R. Tolkien', 'year' => 1937],
+  ['id' => 2, 'title' => '1984', 'author' => 'George Orwell', 'year' => 1949],
+  ['id' => 3, 'title' => 'To Kill a Mockingbird', 'author' => 'Harper Lee', 'year' => 1960],
+];
+
+// You can simulate a filter or "query" here
+$search = $_GET['search'] ?? '';
+if ($search !== '') {
+  $books = array_filter($books, fn($b) =>
+    stripos($b['title'], $search) !== false ||
+    stripos($b['author'], $search) !== false
+  );
+}
+?>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>PHP + SQL Mock Demo</title>
+  <style>
+    body { font-family: sans-serif; margin: 20px; }
+    table { border-collapse: collapse; width: 100%; max-width: 700px; }
+    th, td { border: 1px solid #ccc; padding: 8px; }
+    input { padding: 6px; }
+    pre { background: #222; color: #eee; padding: 10px; }
+  </style>
+</head>
+<body>
+  <h1>PHP + SQL Mock Demo</h1>
+  <form>
+    <input type="text" name="search" placeholder="Search title or author"
+           value="<?=htmlspecialchars($search)?>">
+    <button>Search</button>
+  </form>
+
+  <h3>SQL Query:</h3>
+  <pre><?=htmlspecialchars($sql)?></pre>
+
+  <h3>Results:</h3>
+  <table>
+    <tr><th>ID</th><th>Title</th><th>Author</th><th>Year</th></tr>
+    <?php foreach ($books as $b): ?>
+      <tr>
+        <td><?=htmlspecialchars($b['id'])?></td>
+        <td><?=htmlspecialchars($b['title'])?></td>
+        <td><?=htmlspecialchars($b['author'])?></td>
+        <td><?=htmlspecialchars($b['year'])?></td>
+      </tr>
+    <?php endforeach; ?>
+    <?php if (empty($books)): ?>
+      <tr><td colspan="4">No results found.</td></tr>
+    <?php endif; ?>
+  </table>
+</body>
+</html>
